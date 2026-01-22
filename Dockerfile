@@ -5,7 +5,7 @@ FROM python:3.9-slim
 WORKDIR /app
 
 # 3. Copiamos el archivo de script al contenedor
-COPY main.py .
+COPY app.py .
 
 # 4. Definimos una variable de entorno por defecto (opcional)
 ENV NAME="Mundo"
