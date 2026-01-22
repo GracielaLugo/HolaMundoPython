@@ -11,4 +11,4 @@ COPY app.py .
 ENV NAME="Mundo"
 
 # 5. Comando para ejecutar la aplicación
-CMD ["python", "main.py"]
+CMD ["python", "app.py"]
