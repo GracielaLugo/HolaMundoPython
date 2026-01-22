@@ -1,14 +1,20 @@
-# 1. Usamos una imagen base ligera de Python
+# 1. Imagen base
 FROM python:3.9-slim
 
-# 2. Establecemos el directorio de trabajo dentro del contenedor
+# 2. Directorio de trabajo
 WORKDIR /app
 
-# 3. Copiamos el archivo de script al contenedor
-COPY app.py .
+# 3. Copiar primero el archivo de requerimientos (mejora la velocidad de construcción)
+COPY requirements.txt .
 
-# 4. Definimos una variable de entorno por defecto (opcional)
-ENV NAME="Mundo"
+# 4. Instalar las librerías necesarias
+RUN pip install --no-cache-dir -r requirements.txt
 
-# 5. Comando para ejecutar la aplicación
+# 5. Copiar todo el contenido del proyecto a la carpeta /app
+COPY . .
+
+# 6. Exponer el puerto que usa Flask (Render suele usar el 10000 o 5000)
+EXPOSE 10000
+
+# 7. Ejecutar la aplicación (asegúrate de usar el nombre correcto: app.py o main.py)
 CMD ["python", "app.py"]
